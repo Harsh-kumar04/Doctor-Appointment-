@@ -2,8 +2,7 @@ import { Model, DataTypes } from "sequelize";
 
 export default (sequelize) => {
   class Category extends Model {
-    static associate(models) {
-    }
+    static associate(models) {}
   }
 
   Category.init(
@@ -13,7 +12,6 @@ export default (sequelize) => {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        unique: true,
       },
       name: {
         type: DataTypes.STRING,

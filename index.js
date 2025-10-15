@@ -5,6 +5,9 @@ import db from "./database/models/index.js";
 import getroutes from "./module/v1/profile/routes/profile_routes.js";
 import favroutes from "./module/v1/favourite/routes/fav_routes.js";
 import appoiroutes from "./module/v1/Apointment/routes/appoint_routes.js";
+import docterroutes from "./module/v1/Docter/routes/doc_routes.js";
+import adminroutes from "./module/v1/Admin/routes/ad_routes.js";
+import clinicroutes from "./module/v1/clinic/routes/cli_routes.js";
 
 const { sequelize } = db;
 dotenv.config();
@@ -16,6 +19,9 @@ app.use("/auth", router);
 app.use("/get", getroutes);
 app.use("/fav", favroutes);
 app.use("/appoint", appoiroutes);
+app.use("/docter", docterroutes);
+app.use("/admin", adminroutes);
+app.use("/clinic", clinicroutes);
 
 app.get("/", (req, res) => res.send("server is running"));
 
@@ -25,10 +31,6 @@ app.listen(PORT, () =>
 );
 sequelize
   .sync()
-  .then(() => {
-    console.log("All tables are synced!");
-  })
-  .catch((err) => {
-    console.error(" Sync error:", err);
-  });
-// await sequelize.sync({ force: true });
+  .then(() => console.log("All tables are synced!"))
+  .catch((err) => console.error("Sync error:", err));
+// await sequelize.sync({ alter: true });
